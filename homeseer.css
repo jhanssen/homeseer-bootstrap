@@ -16,6 +16,10 @@
 .fa-6 {
     font-size: 20em;
 }
+.btn-group.btn-group-justified {
+    padding-left: 1em;
+    padding-right: 1em;
+}
 
 .fa-1,
 .fa-2,

@@ -13,10 +13,16 @@
 
 	<div ng-repeat="scene in scenes" ng-if="$index % 3 == 0" class="row text-center">
 	  <div class="col-xs-12">
-	    <div class="btn-group" role="group">
-	      <button class="btn btn-default btn-lg" ng-if="$index < scenes.length" ng-click="toggleScene(scenes[$index].id)">{{scenes[$index].name}}</button>
-	      <button class="btn btn-default btn-lg" ng-if="$index+1 < scenes.length" ng-click="toggleScene(scenes[$index+1].id)">{{scenes[$index+1].name}}</button>
-	      <button class="btn btn-default btn-lg" ng-if="$index+2 < scenes.length" ng-click="toggleScene(scenes[$index+2].id)">{{scenes[$index+2].name}}</button>
+	    <div class="btn-group btn-group-justified" role="group">
+	      <div class="btn-group" role="group" ng-if="$index < scenes.length">
+		<button class="btn btn-default btn-lg" ng-click="toggleScene(scenes[$index].id)">{{scenes[$index].name}}</button>
+	      </div>
+	      <div class="btn-group" role="group" ng-if="$index+1 < scenes.length">
+		<button class="btn btn-default btn-lg" ng-click="toggleScene(scenes[$index+1].id)">{{scenes[$index+1].name}}</button>
+	      </div>
+	      <div class="btn-group" role="group" ng-if="$index+2 < scenes.length">
+		<button class="btn btn-default btn-lg" ng-click="toggleScene(scenes[$index+2].id)">{{scenes[$index+2].name}}</button>
+	      </div>
 	    </div>
 	  </div>
 	</div>
