@@ -35,6 +35,13 @@ Homeseer.prototype = {
             }, that._connectTimeout);
         };
         this._ws.onerror = function(err) {
+            if (that._connectTimeout !== undefined) {
+                setTimeout(function() {
+                    if (that._connectTimeout < 64000)
+                        that._connectTimeout *= 2;
+                    that._createWebSocket();
+                }, that._connectTimeout);
+            }
         };
         this._ws.onmessage = function(data) {
             try {
