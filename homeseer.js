@@ -1,7 +1,7 @@
 /*global angular,WebSocket,setTimeout*/
 function Homeseer(uri) {
     this._uri = uri;
-    this._createWebsocket();
+    this._createWebSocket();
 };
 
 Homeseer.WithId = 0;
@@ -15,7 +15,7 @@ Homeseer.prototype = {
     _cbs: Object.create(null),
     _ons: Object.create(null),
 
-    _createWebsocket: function() {
+    _createWebSocket: function() {
         var that = this;
         this._ws = new WebSocket(that._uri);
         this._ws.onopen = function() {
@@ -66,6 +66,8 @@ Homeseer.prototype = {
         };
     },
     _request: function(req, flags, cb) {
+        if (this._ws.readyState !== 1)
+            return;
         if (flags === undefined || flags === Homeseer.WithId) {
             var id = ++this._id;
             req.id = id;
@@ -111,6 +113,8 @@ var app, hs;
         });
         hs.on("disconnected", function() {
             $scope.enabled = false;
+            if ("scenes" in $scope)
+                delete $scope.scenes;
             $scope.$apply();
         });
         hs.on("events", function(events) {
