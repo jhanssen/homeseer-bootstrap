@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="homeseer.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body ng-app="homeseer">
+    <div ng-controller="MainController">
+      <div ng-hide="enabled === false">
+	<h1 class="text-center">Scenes</h1>
+
+	<div ng-repeat="scene in scenes" ng-if="$index % 3 == 0" class="row text-center">
+	  <div class="col-xs-12">
+	    <div class="btn-group" role="group">
+	      <button class="btn btn-default btn-lg" ng-if="$index < scenes.length" ng-click="toggleScene(scenes[$index].id)">{{scenes[$index].name}}</button>
+	      <button class="btn btn-default btn-lg" ng-if="$index+1 < scenes.length" ng-click="toggleScene(scenes[$index+1].id)">{{scenes[$index+1].name}}</button>
+	      <button class="btn btn-default btn-lg" ng-if="$index+2 < scenes.length" ng-click="toggleScene(scenes[$index+2].id)">{{scenes[$index+2].name}}</button>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div ng-hide="enabled === true">
+	<h1 class="text-center">Disconnected from Homeseer</h1>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="homeseer.js"></script>
+  </body>
+</html>
